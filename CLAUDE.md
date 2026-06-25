@@ -1,6 +1,10 @@
-# Project Notes — Isares Samruayruen Portfolio
+# CLAUDE.md — Isares Samruayruen Portfolio
 
 > สรุปงานที่ทำในโปรเจคนี้ เพื่อให้ session ใหม่เข้าใจ context ได้ทันที
+
+## ⚠️ กฎสำคัญ
+- **ต้องขออนุญาตจากผู้ใช้ก่อนเสมอ** ก่อน push code ขึ้น GitHub — ห้าม push เองโดยไม่ได้รับอนุญาต (commit ในเครื่องทำได้เมื่อจำเป็น แต่ push ต้องถามก่อน)
+- สื่อสารกับผู้ใช้เป็นภาษาไทย
 
 ## ภาพรวม
 - เว็บ portfolio/resume แบบ **single-file static site** (`index.html` ไฟล์เดียว, CSS+JS อยู่ในไฟล์, ไม่มี build step)
