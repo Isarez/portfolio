@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isarez Samruayruen | Technical Leader & Enterprise Solutions Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: #131c30;
+            --bg-card-hover: #1e2942;
+            --color-primary: #38bdf8;
+            --color-secondary: #818cf8;
+            --color-text-main: #f8fafc;
+            --color-text-muted: #94a3b8;
+            --color-border: #1e293b;
+            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+            --font-main: 'Plus Jakarta Sans', 'Prompt', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--color-text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--gradient-accent);
+            margin: 0.75rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: var(--color-text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h2 {
+            font-size: 1.75rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text-main);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+            border-color: var(--color-text-muted);
+        }
+
+        .hero-avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar-frame {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            padding: 6px;
+            background: var(--gradient-accent);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--bg-card);
+            border: 4px solid var(--bg-main);
+        }
+
+        /* Summary Stats Section */
+        .stats-bar {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+            margin-top: -30px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item h3 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 100px 0;
+            background-color: rgba(19, 28, 48, 0.3);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30px;
+            height: 100%;
+            width: 2px;
+            background-color: var(--color-border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3.5rem;
+            padding-left: 80px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 21px;
+            top: 6px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--bg-main);
+            border: 4px solid var(--color-primary);
+            z-index: 2;
+            transition: background-color 0.3s;
+        }
+
+        .timeline-item:hover::before {
+            background-color: var(--color-secondary);
+        }
+
+        .timeline-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .role-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--color-text-main);
+        }
+
+        .company-name {
+            font-size: 1.05rem;
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .platform-subtitle {
+            font-size: 1rem;
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-body .platform-subtitle:first-child {
+            margin-top: 0;
+        }
+
+        .work-duration {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--color-primary);
+            padding: 0.35rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .timeline-body ul {
+            list-style-type: none;
+        }
+
+        .timeline-body li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-muted);
+            font-size: 0.98rem;
+        }
+
+        .timeline-body li::before {
+            content: "•";
+            color: var(--color-secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 100px 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .skills-category {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 0.75rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
+            background-color: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .skill-badge:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Highlight Section */
+        .projects {
+            padding: 100px 0;
+            background-color: rgba(19, 28, 48, 0.2);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-secondary);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-desc {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.8rem;
+            background-color: rgba(255,255,255,0.05);
+            color: var(--color-text-muted);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        /* Education Section */
+        .education {
+            padding: 100px 0;
+        }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .edu-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .edu-degree {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-main);
+        }
+
+        .edu-school {
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0 140px;
+            background-color: rgba(11, 15, 25, 0.95);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .contact-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--color-text-main);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-3px);
+            background-color: var(--bg-card-hover);
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #060911;
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid #111726;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 2.75rem;
+            }
+            .hero-desc {
+                margin: 0 auto 2.5rem;
+            }
+            .cta-group {
+                justify-content: center;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            .edu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item {
+                padding-left: 50px;
+            }
+            .timeline-item::before {
+                left: 11px;
+            }
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .work-duration {
+                margin-top: 0.25rem;
+            }
+            .contact-cards {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">ISAREZ<span style="color: var(--color-primary);">.S</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Hi, I'm <span class="gradient-text">Isarez Samruayruen</span></h1>
+                    <h2>Technical Leader & Senior Software Developer</h2>
+                    <p class="hero-desc">
+                        A results-driven Technical Leader and Software Developer with over 13 years of extensive experience specializing in the design, development, and deployment of robust enterprise applications. Proven track record across high-stakes industries including Banking, Telecommunications, and Government sectors. Expert in microservices architecture, secure financial transaction processing, and modern cloud deployment.
+                    </p>
+                    <div class="cta-group">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="#experience" class="btn btn-secondary">View Experience</a>
+                    </div>
+                </div>
+                <div class="hero-avatar-container">
+                    <div class="avatar-frame">
+                        <img src="img.jpg" alt="Isarez Samruayruen" class="avatar-img" onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-accent)';">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats Bar -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <h3>13+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4+</h3>
+                    <p>Enterprise Sectors</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Production Delivery</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Agile</h3>
+                    <p>Framework Driven</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <div class="edu-degree">Master of Science in Information Technology</div>
+                    <div class="edu-school">Sripatum University</div>
+                </div>
+                <div class="edu-card">
+                    <div class="edu-degree">Bachelor of Science in Computer Science</div>
+                    <div class="edu-school">Sripatum University</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                
+                <!-- Thai Credit Bank -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="role-title">Technical Leader</h3>
+                                <div class="company-name">Thai Credit Bank</div>
+                            </div>
+                            <span class="work-duration">Mar 2020 – Present</span>
+                        </div>
+                        <div class="timeline-body">
+                            <div class="platform-subtitle">eKYC Platform</div>
+                            <ul>
+                                <li>Designed the eKYC platform end-to-end from a blank slate, as the bank had no existing eKYC capability — covering the customer data model, eKYC transaction/audit logging, and the workflow needed to qualify customers to a given IAL (Identity Assurance Level).</li>
+                                <li>Designed the face liveness and face recognition pipeline used to authenticate customers against the facial biometric data captured during their eKYC enrollment at IAL Level 2.3, enabling secure face-based re-authentication for subsequent transactions.</li>
+                                <li>Acted as technical lead for the platform, directing a mixed team of junior and senior developers — breaking down the architecture into workable tasks, reviewing code, and unblocking the team to keep delivery on the agreed timeline.</li>
+                                <li>Designed and built integrations spanning internal and external systems: Core Banking (customer/account data), Counter Service (third-party agent network), TRUE SMS Gateway (OTP/notification delivery), and DOPA (Department of Provincial Administration, for government ID verification).</li>
+                                <li>Enabled eKYC enrollment across multiple channels: in-branch via Android Tablets (including designing and building the Tablet backend service that bridges the tablet app to the eKYC platform) and via Counter Service's backend-to-backend data exchange for off-branch enrollment.</li>
+                                <li>Extended the platform's data and trust model so it could feed into and interoperate with the NDID platform, allowing identity data verified through eKYC to be reused for cross-bank NDID identification.</li>
+                            </ul>
+
+                            <div class="platform-subtitle">NDID Platform</div>
+                            <ul>
+                                <li>Designed as a dedicated, standalone platform separated from eKYC, scoped specifically to NDID (National Digital ID) operations rather than being bundled into the eKYC system.</li>
+                                <li>Designed the NDID node architecture (the blockchain component of the NDID network) — covering the deployment of Tendermint, the node's API layer, message queue, and the secure storage of cryptographic keys and certificates — engineered to fit the bank's AWS Cloud Services environment.</li>
+                                <li>Designed an internal application layer in front of the raw NDID API so that internal client teams acting as data-source owners could integrate and consume NDID services without needing to understand blockchain internals or the underlying NDID protocol flows.</li>
+                                <li>Designed and developed the RP (Relying Party), IdP (Private Identity Provider), and AS/DP (Data Provider) services to satisfy business-unit requirements, including transaction reporting across RP/IdP/AS roles and the fee calculation logic tied to NDID transactions.</li>
+                            </ul>
+
+                            <div class="platform-subtitle">OCR Service</div>
+                            <ul>
+                                <li>Designed an in-house OCR service to replace the bank's previous vendor-supplied OCR solution, bringing the capability in-house for greater control and extensibility.</li>
+                                <li>Delivered the first version focused on Thai national ID card OCR — extracting structured identity data from the card image and forwarding it downstream to the eKYC and other dependent systems.</li>
+                                <li>Architected the service with extensibility in mind, so the same OCR pipeline could later be extended to read additional document and image types beyond the national ID card.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saitech Solution -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="role-title">Senior Software Developer</h3>
+                                <div class="company-name">Saitech Solution (On-site TRUE Corp.)</div>
+                            </div>
+                            <span class="work-duration">May 2018 – Feb 2020</span>
+                        </div>
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Engineered the OMX Mobile Backend, a Java service built on the TIBCO Framework, responsible for managing high-volume incoming mobile transactions and consolidating data collected from multiple upstream systems.</li>
+                                <li>Consolidated and synchronized distributed data streams from complex legacy systems using Java-based TIBCO Middleware, ensuring consistent, zero-loss transaction pipelines through optimized message-queuing and integration interfaces.</li>
+                                <li>Built a Webtool Application for transaction tracking and JMS message routing, using ReactJS for the frontend, Spring Boot for the backend, Oracle for persistence, and Elasticsearch for transaction search/indexing — giving operations teams real-time visibility into transaction status and JMS routing behavior.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PSP Thailand -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="role-title">Software Developer</h3>
+                                <div class="company-name">PSP (Thailand) (On-site Bank of Ayudhya - BAY)</div>
+                            </div>
+                            <span class="work-duration">Mar 2016 – Apr 2018</span>
+                        </div>
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Built the DMS (Data Correction) module, enabling authorized operators to audit and modify dataset records in strict compliance with data correction requirements set by the Bank of Thailand (BoT), using AngularJS, Spring Boot, MSSQL, and iReport for reporting.</li>
+                                <li>Developed a File Management module to manage and organize dataset files used across the system, using AngularJS, Spring Boot, and MSSQL.</li>
+                                <li>Built a Dataset Dashboard providing a summarized, real-time view of dataset processing status, using AngularJS, Spring Boot, and MSSQL.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro Technical Info Service -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="role-title">Software Developer</h3>
+                                <div class="company-name">Pro Technical Info Service</div>
+                            </div>
+                            <span class="work-duration">Oct 2012 – Feb 2016</span>
+                        </div>
+                        <div class="timeline-body">
+                            <div class="platform-subtitle">Software Developer — Oct 2012 – May 2015</div>
+                            <ul>
+                                <li>Implemented the Inventory, Helpdesk, and Knowledge Management modules for the TOT Wi-Fi Provisioning system, using AngularJS, Grails, MySQL, and the Google Maps API.</li>
+                                <li>Developed the Report and Data Dictionary modules for the Office of the National Anti-Corruption Commission (NACC) Knowledge Management system, using JSP, Oracle, Oracle WebLogic, and iReport.</li>
+                            </ul>
+
+                            <div class="platform-subtitle">Freelance Software Developer — Jun 2015 – Feb 2016</div>
+                            <ul>
+                                <li>Continued ownership of the TOT Wi-Fi Provisioning system on a freelance basis, implementing new features and maintaining all existing modules, using AngularJS, Grails, MySQL, and the Google Maps API.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                
+                <!-- Category 1 -->
+                <div class="skills-category">
+                    <div class="category-title">
+                        <span>Leadership & Architecture</span>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-badge">Technical Leadership</span>
+                        <span class="skill-badge">System Architecture</span>
+                        <span class="skill-badge">Solution Architecture</span>
+                        <span class="skill-badge">Microservices Design</span>
+                        <span class="skill-badge">Team Coordination</span>
+                        <span class="skill-badge">Code Review</span>
+                        <span class="skill-badge">Agile Methodologies</span>
+                        <span class="skill-badge">Mentoring & Coaching</span>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="skills-category">
+                    <div class="category-title">
+                        <span>Backend Engineering</span>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">Spring Boot</span>
+                        <span class="skill-badge">Golang</span>
+                        <span class="skill-badge">Node.js / Express</span>
+                        <span class="skill-badge">TIBCO Framework</span>
+                        <span class="skill-badge">Grails</span>
+                        <span class="skill-badge">JSP</span>
+                        <span class="skill-badge">AES/GCM Encryption</span>
+                        <span class="skill-badge">RabbitMQ</span>
+                        <span class="skill-badge">ActiveMQ</span>
+                        <span class="skill-badge">Kafka</span>
+                        <span class="skill-badge">Micronaut</span>
+                        <span class="skill-badge">RESTful API</span>
+                        <span class="skill-badge">Microservices</span>
+                        <span class="skill-badge">OpenCV</span>
+                        <span class="skill-badge">Google Vision</span>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="skills-category">
+                    <div class="category-title">
+                        <span>Frontend & Integration</span>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-badge">Svelte</span>
+                        <span class="skill-badge">AngularJS</span>
+                        <span class="skill-badge">ReactJS</span>
+                        <span class="skill-badge">HTML5 / CSS3</span>
+                        <span class="skill-badge">Google Maps API</span>
+                    </div>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="skills-category">
+                    <div class="category-title">
+                        <span>Cloud, DevOps & Databases</span>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-badge">AWS CodeCommit</span>
+                        <span class="skill-badge">AWS CodePipeline</span>
+                        <span class="skill-badge">AWS Lambda</span>
+                        <span class="skill-badge">AWS EKS</span>
+                        <span class="skill-badge">AWS ECS</span>
+                        <span class="skill-badge">AWS API Gateway</span>
+                        <span class="skill-badge">AWS Secrets Manager</span>
+                        <span class="skill-badge">AWS KMS</span>
+                        <span class="skill-badge">AWS Rekognition</span>
+                        <span class="skill-badge">AWS CloudFormation</span>
+                        <span class="skill-badge">AWS CloudWatch</span>
+                        <span class="skill-badge">AWS SQS</span>
+                        <span class="skill-badge">AWS SNS</span>
+                        <span class="skill-badge">Docker Containerization</span>
+                        <span class="skill-badge">Kubernetes</span>
+                        <span class="skill-badge">MSSQL</span>
+                        <span class="skill-badge">Oracle</span>
+                        <span class="skill-badge">Oracle WebLogic</span>
+                        <span class="skill-badge">PostgreSQL</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">DynamoDB</span>
+                        <span class="skill-badge">Redis</span>
+                        <span class="skill-badge">Database Design</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Focus Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-icon">🏦</div>
+                    <h3 class="project-name">eKYC Platform</h3>
+                    <p class="project-desc">Designed Thai Credit Bank's eKYC platform from the ground up, covering customer data and IAL qualification, face liveness/recognition authentication, and multi-channel enrollment via branch tablets and Counter Service.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Spring Boot</span>
+                        <span class="project-tag">AWS</span>
+                        <span class="project-tag">Java</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🔗</div>
+                    <h3 class="project-name">NDID Platform</h3>
+                    <p class="project-desc">Architected a standalone NDID platform for Thai Credit Bank — designing the blockchain node (Tendermint/API/MQ), an abstraction layer over the NDID API, and the RP/IdP/AS services for reporting and fee calculation.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Blockchain</span>
+                        <span class="project-tag">AWS</span>
+                        <span class="project-tag">Java</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🪪</div>
+                    <h3 class="project-name">OCR Service</h3>
+                    <p class="project-desc">Built an in-house OCR service to replace a vendor solution at Thai Credit Bank, delivering Thai national ID card recognition with an architecture extensible to other document types.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">OpenCV</span>
+                        <span class="project-tag">Google Vision</span>
+                        <span class="project-tag">Java</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">📡</div>
+                    <h3 class="project-name">OMX Mobile Backend & Webtool</h3>
+                    <p class="project-desc">Engineered the OMX Mobile Backend for high-volume mobile transactions on TRUE Corp.'s infrastructure, plus a Webtool Application for transaction tracking and JMS message routing.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">TIBCO</span>
+                        <span class="project-tag">ReactJS</span>
+                        <span class="project-tag">Spring Boot</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🛡️</div>
+                    <h3 class="project-name">DMS — Data Correction Platform</h3>
+                    <p class="project-desc">Developed a secure and auditable Data Correction platform for Bank of Ayudhya (BAY), with File Management and Dataset Dashboard modules, complying with Bank of Thailand regulatory codes.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">AngularJS</span>
+                        <span class="project-tag">Spring Boot</span>
+                        <span class="project-tag">MSSQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🌐</div>
+                    <h3 class="project-name">TOT Wi-Fi Provisioning & NACC KM</h3>
+                    <p class="project-desc">Implemented Inventory, Helpdesk, and Knowledge Management modules for TOT's Wi-Fi Provisioning system, and Report/Data Dictionary modules for the NACC Knowledge Management system.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">AngularJS</span>
+                        <span class="project-tag">Grails</span>
+                        <span class="project-tag">Oracle</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <h2 class="section-title">Let's Connect</h2>
+                <p style="color: var(--color-text-muted);">Ready to bring technical leadership and sound enterprise architecture solutions to your organization.</p>
+
+                <div class="contact-cards">
+                    <a href="mailto:isarez.sum@gmail.com" class="contact-card">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">isarez.sum@gmail.com</div>
+                    </a>
+                    <a href="tel:+66877695009" class="contact-card">
+                        <div class="contact-label">Phone</div>
+                        <div class="contact-value">+6687 769 5009</div>
+                    </a>
+                    <div class="contact-card">
+                        <div class="contact-label">Location</div>
+                        <div class="contact-value">Nonthaburi, Thailand</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Isarez Samruayruen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+        const sections = Array.from(navLinks)
+            .map(link => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+
+        function setActiveLink() {
+            const headerOffset = document.querySelector('header').offsetHeight + 10;
+            let current = sections[0];
+
+            sections.forEach(section => {
+                if (section.getBoundingClientRect().top - headerOffset <= 0) {
+                    current = section;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${current.id}`);
+            });
+        }
+
+        window.addEventListener('scroll', setActiveLink);
+        window.addEventListener('load', setActiveLink);
+    </script>
+
+</body>
+</html>
