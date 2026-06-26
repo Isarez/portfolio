@@ -20,23 +20,28 @@
 ## โครงสร้างไฟล์
 ```
 index/
-├── index.html              # ทั้งเว็บ
+├── index.html                    # ทั้งเว็บ
 ├── images/
-│   ├── img.jpg             # รูปโปรไฟล์ (ใช้ใน hero avatar)
-│   └── portfolio-qr.png    # QR code ชี้ไป live URL
+│   ├── img.jpg                   # รูปโปรไฟล์ (ใช้ใน hero avatar)
+│   ├── portfolio-qr.png          # QR code ชี้ไป live URL (ใช้ฝัง CV ไม่ใช่ในหน้าเว็บ)
+│   ├── favicon.svg                # favicon หลัก (vector, glassmorphism + ตัว "i" gradient ฟ้า→ม่วง ไม่มีพื้น navy)
+│   ├── favicon-32.png / favicon.png / apple-touch-icon.png  # fallback raster ของ favicon (สร้างด้วย rsvg-convert)
 └── cv/
-    └── CV_ISARES_S.pdf     # CV ดาวน์โหลดได้จากปุ่มใน hero
+    └── CV_ISARES_S.pdf           # CV ดาวน์โหลดได้จากปุ่มใน hero
 ```
+- favicon source ทำเป็น SVG (`images/favicon.svg`) แก้ตรงนั้นแล้ว re-export PNG ด้วย `rsvg-convert -w <size> -h <size> favicon.svg -o <out>.png` (ติดตั้งผ่าน `brew install librsvg`)
+- **ข้อควรระวัง SVG gradient:** ต้องใส่ `gradientUnits="userSpaceOnUse"` ถ้าใช้ค่า x1/y1/x2/y2 เป็นพิกัดจริง (ไม่ใส่จะตีความเป็น fraction ของ bounding box ทำให้ไล่สีเพี้ยน/จืด — เคยเจอปัญหานี้มาแล้ว)
 
 ## ลำดับ section ในหน้าเว็บ (บนลงล่าง)
-1. Hero/About (`#about`) — มีรูป + ปุ่ม Get In Touch / View Experience / **Download CV**
-2. Quick Stats (`.stats` section แยก: 13+, 4+, 100%, Agile — มี count-up animation)
-3. Education (`#education`)
+1. Hero/About (`#about`) — มีรูป + ปุ่ม Get In Touch / View Experience / **Download CV** + ลิงก์ **LinkedIn** เล็กๆใต้ปุ่ม (ไม่เด่น, `linkedin.com/in/isares-s`)
+2. Quick Stats (`.stats` section แยก: 13+, 4+, 100%, **50+ Technologies** — มี count-up animation ทุกอัน เปลี่ยนจาก "Agile" เดิมแล้ว)
+3. Education (`#education`) — มี icon (graduation cap, SVG sprite) + ปีจบ/GPA: MSIT 2016 GPA 3.95, BSc CS 2012 GPA 2.57
 4. Experience (`#experience`)
-5. Skills (`#skills`)
+5. Skills (`#skills`) — ตอนนี้มี **5 กล่อง** (ดูด้านล่าง)
 6. Projects (`#projects`)
-7. Contact (`#contact`) — อยู่ล่างสุดก่อน footer
+7. Contact (`#contact`) — อยู่ล่างสุดก่อน footer, มี 4 การ์ด: Email, Phone, **LINE ID (noom.isarez)**, Location — เรียง grid 4 คอลัมน์เท่ากัน
 - Navbar order: About → Education → Experience → Skills → Projects → Contact (มี scroll-spy highlight + underline animation)
+- Footer: มี SVG robot icon ด้านบน + "Powered by Claude" (มี sparkle icon หน้าคำว่า Claude แทนโลโก้จริง เพราะไม่ใช้โลโก้ trademark ของ Anthropic)
 
 ## เนื้อหา Experience (สำคัญ — เคยเรียบเรียงใหม่เป็นภาษาอังกฤษ)
 - **Thai Credit Bank** (Technical Leader, Mar 2020–Present): กล่องเดียว แยก 3 subtitle — **eKYC Platform**, **NDID Platform**, **OCR Service**
@@ -45,11 +50,24 @@ index/
 - **Pro Technical Info Service**: กล่องเดียว แยก 2 subtitle — Software Developer (Oct 2012–May 2015, TOT Wi-Fi + NACC) และ Freelance (Jun 2015–Feb 2016, TOT Wi-Fi maintenance)
 - Featured Focus Projects: 6 การ์ด อ้างอิงตาม experience
 
+## Skills section (อัปเดต — แยก AWS ออกมาแล้ว)
+5 กล่อง: **Leadership & Architecture**, **Backend Engineering** (เอา "AES/GCM Encryption" ออกแล้ว), **Frontend & Integration**, **DevOps & Databases** (Docker/Kubernetes/databases), **Cloud Services** (AWS badge ทั้งหมด 13 ตัว แยกมาจากกล่องเดิม — กล่องนี้ตั้ง `grid-column: 1 / -1` ให้กว้างเต็มแถวเพราะมี badge เยอะ)
+
+## Icon system (สำคัญ — เปลี่ยนจาก emoji เป็น SVG sprite ทั้งหมด)
+- มี `<svg style="display:none">` sprite อยู่ต้น `<body>` เก็บ `<symbol>` ของไอคอนทั้งหมด (icon-flag, icon-server, icon-code, icon-database, icon-cloud, icon-mail, icon-phone, icon-chat, icon-pin, icon-cap, icon-id, icon-link, icon-scan, icon-activity, icon-shield, icon-wifi)
+- เรียกใช้ด้วย `<svg class="icon-svg"><use href="#icon-xxx"/></svg>` — ใช้กับ: skills category title, contact card, education card, project card
+- สไตล์ icon: line-icon สีเดียว (`var(--color-primary)`) ใส่ในกล่องพื้นหลังวงกลม/สี่เหลี่ยมมุมโค้งจาง (`rgba(56,189,248,0.12)`) ตอน hover การ์ดจะเปลี่ยนพื้น icon เป็น gradient เต็ม + ตัว icon เป็นสีขาว
+- ห้ามใช้ emoji อีก — ผู้ใช้สั่งให้เอา emoji ออกให้หมดและทำเป็น SVG ธีมเดียวกันแทน
+
 ## Animations / effects ที่ทำไว้ (อยู่ใน `<style>` และ `<script>` ท้ายไฟล์)
-- **Particle background** — `<canvas id="particles">` วาด particle ลอย + เส้นเชื่อม (constellation), ปรับจำนวนตามขนาดจอ
-- **Avatar glow** — conic-gradient ring หมุน (`avatarSpin` 9s) + pulsing halo (`avatarPulse`) + glow pulse หลังรูป
-- Hero fade-up เข้าทีละ element, scroll-reveal (IntersectionObserver) สำหรับ cards/timeline, section-title underline grow, count-up stats
+- **Particle background** — `<canvas id="particles">` วาด particle ลอย + เส้นเชื่อม (constellation), ปรับจำนวนตามขนาดจอ (แทนที่ bgSheen เดิมที่เคยลองแล้วเปลี่ยนมาเป็น particle ตามที่ผู้ใช้ขอ)
+- **Avatar glow** — conic-gradient ring หมุน (`avatarSpin` 9s) + pulsing halo (`avatarPulse`) + glow pulse หลังรูป (ปรับให้เข้มขึ้นรอบล่าสุดตามที่ผู้ใช้ขอ "ทำให้เด่นขึ้น")
+- Hero fade-up เข้าทีละ element (รวมถึง social-row ลิงก์ LinkedIn), scroll-reveal (IntersectionObserver) สำหรับ cards/timeline, section-title underline grow, count-up stats
 - ทุก animation respect `prefers-reduced-motion: reduce`
+
+## SEO / Meta tags
+- `<title>` แก้ให้ตรงกับ hero แล้ว: "Isares Samruayruen | Technical Lead Software Developer"
+- มี `<meta name="description">`, Open Graph (`og:title/description/image/url`), Twitter card tags ครบแล้ว (ใช้ `images/img.jpg` เป็น share image, URL อ้างอิง `https://isarez.github.io/portfolio/`)
 
 ## ตำแหน่ง QR code ในไฟล์ PDF (สำคัญ — ผู้ใช้ปรับหลายรอบจนพอใจ)
 ทำด้วย Python (reportlab วาด overlay → pypdf merge ทับหน้า). venv อยู่ที่ `/tmp/pdfenv`
@@ -65,7 +83,15 @@ index/
 - "Isarez" → **"Isares"** Samruayruen (ทั้งไฟล์)
 - "Technical Leader & Senior Software Developer" → **"Technical Lead Software Developer"**
 
+## รีวิวหน้าเว็บ — สิ่งที่ผู้ใช้ "ปฏิเสธ/ยังไม่ต้องทำ" แล้ว (อย่าเสนอซ้ำโดยไม่ถูกถาม)
+หลังรีวิวหน้าเว็บรอบหนึ่ง มีข้อเสนอที่ผู้ใช้บอกว่ายังไม่ต้องทำ:
+- ไม่ต้องเพิ่ม Certifications section
+- ไม่ต้องเพิ่มลิงก์/ปุ่มในการ์ด Featured Projects (งานเป็นข้อมูลองค์กรการเงิน confidential)
+- favicon เป็นเรื่องที่ตกลงทำแยกทีหลัง (ทำเสร็จแล้วในรอบถัดมา — ดูหัวข้อโครงสร้างไฟล์)
+
 ## Preferences ของผู้ใช้
 - ชอบดีไซน์ **minimal แต่ premium**, animation ไม่รบกวนสายตาในการอ่าน
+- ไม่ชอบใช้ emoji ในหน้าเว็บ — ให้ทำเป็น SVG icon ที่เข้าธีมสีเสมอ
 - สื่อสารภาษาไทย
 - ให้ push/deploy เมื่อสั่งเท่านั้น
+- เวลาทำ favicon/logo: ลอง design ใหม่ได้เรื่อยๆถ้าผู้ใช้บอกว่า "ยังไม่สวย" — ไม่ต้องยึดติด concept เดิม (เคยเปลี่ยนจากตัวอักษร IS → glassmorphism → spark/compass mark → ตัวอักษร "i" ก่อนจะลงตัว)
