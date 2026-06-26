@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isares Samruayruen | Technical Leader & Enterprise Solutions Architect</title>
+    <title>Isares Samruayruen | Technical Lead Software Developer</title>
+    <meta name="description" content="Isares Samruayruen — Technical Lead Software Developer with 13+ years of experience in enterprise software, banking systems, eKYC/NDID platforms, and cloud architecture.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Isares Samruayruen | Technical Lead Software Developer">
+    <meta property="og:description" content="Technical Lead Software Developer with 13+ years of experience in enterprise software, banking systems, eKYC/NDID platforms, and cloud architecture.">
+    <meta property="og:image" content="https://isarez.github.io/portfolio/images/img.jpg">
+    <meta property="og:url" content="https://isarez.github.io/portfolio/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Isares Samruayruen | Technical Lead Software Developer">
+    <meta name="twitter:description" content="Technical Lead Software Developer with 13+ years of experience in enterprise software, banking systems, eKYC/NDID platforms, and cloud architecture.">
+    <meta name="twitter:image" content="https://isarez.github.io/portfolio/images/img.jpg">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -275,6 +288,7 @@
         .hero-text h2 { animation-delay: 0.15s; }
         .hero-text .hero-desc { animation-delay: 0.25s; }
         .hero-text .cta-group { animation-delay: 0.35s; }
+        .hero-text .social-row { animation-delay: 0.45s; }
         .hero-avatar-container { animation-delay: 0.2s; }
 
         .hero-text h1 {
@@ -302,6 +316,26 @@
         .cta-group {
             display: flex;
             gap: 1rem;
+        }
+
+        .social-row {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--color-primary);
         }
 
         .btn {
@@ -593,6 +627,28 @@
             padding: 2rem;
         }
 
+        .skills-category--wide {
+            grid-column: 1 / -1;
+        }
+
+        .icon-svg {
+            width: 1em;
+            height: 1em;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            display: block;
+        }
+
+        .category-icon {
+            font-size: 1.2rem;
+            line-height: 1;
+            color: var(--color-primary);
+            display: inline-flex;
+        }
+
         .category-title {
             font-size: 1.25rem;
             font-weight: 700;
@@ -659,9 +715,22 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
+        .project-card:hover .project-icon {
+            background: var(--gradient-accent);
+            color: #fff;
+        }
+
         .project-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.4rem;
         }
 
         .project-name {
@@ -717,6 +786,19 @@
             transform: translateY(-3px);
         }
 
+        .edu-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 0.75rem;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
         .edu-degree {
             font-size: 1.2rem;
             font-weight: 700;
@@ -730,6 +812,11 @@
             margin-bottom: 0.25rem;
         }
 
+        .edu-meta {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
         /* Contact Section */
         .contact {
             padding: 100px 0 140px;
@@ -738,15 +825,15 @@
         }
 
         .contact-wrapper {
-            max-width: 700px;
+            max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
 
         .contact-cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
             margin-top: 3rem;
         }
 
@@ -754,16 +841,36 @@
             background-color: var(--bg-card);
             border: 1px solid var(--color-border);
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.5rem 1rem;
             text-decoration: none;
             color: var(--color-text-main);
             transition: all 0.3s;
+            min-width: 0;
         }
 
         .contact-card:hover {
             border-color: var(--color-primary);
             transform: translateY(-3px);
             background-color: var(--bg-card-hover);
+        }
+
+        .contact-icon {
+            width: 38px;
+            height: 38px;
+            margin: 0 auto 0.75rem;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .contact-card:hover .contact-icon {
+            background: var(--gradient-accent);
+            color: #fff;
         }
 
         .contact-label {
@@ -775,8 +882,11 @@
         }
 
         .contact-value {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Footer */
@@ -787,6 +897,28 @@
             border-top: 1px solid #111726;
             color: var(--color-text-muted);
             font-size: 0.9rem;
+        }
+
+        footer p + p {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .footer-bot {
+            display: block;
+            margin: 0 auto 0.75rem;
+            opacity: 0.85;
+        }
+
+        .footer-credit {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .claude-icon {
+            flex-shrink: 0;
         }
 
         /* Responsive Design */
@@ -850,6 +982,28 @@
 </head>
 <body>
 
+    <!-- Icon sprite (line icons, themed via currentColor) -->
+    <svg style="display:none" aria-hidden="true">
+        <defs>
+            <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M5 3v18"/><path d="M5 4h11l-2 4 2 4H5"/></symbol>
+            <symbol id="icon-server" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="4" rx="1"/><rect x="4" y="10" width="16" height="4" rx="1"/><rect x="4" y="16" width="16" height="4" rx="1"/><circle cx="7.5" cy="6" r="0.6" fill="currentColor" stroke="none"/><circle cx="7.5" cy="12" r="0.6" fill="currentColor" stroke="none"/><circle cx="7.5" cy="18" r="0.6" fill="currentColor" stroke="none"/></symbol>
+            <symbol id="icon-code" viewBox="0 0 24 24"><polyline points="9 18 4 12 9 6"/><polyline points="15 6 20 12 15 18"/></symbol>
+            <symbol id="icon-database" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></symbol>
+            <symbol id="icon-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-1-7.87A5.5 5.5 0 0 1 16.5 8a4.5 4.5 0 0 1 .5 9z"/></symbol>
+            <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></symbol>
+            <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.31 1.6.57 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.72a2 2 0 0 1 2.11-.45c.76.26 1.55.45 2.36.57A2 2 0 0 1 22 16.92z"/></symbol>
+            <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></symbol>
+            <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+            <symbol id="icon-cap" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></symbol>
+            <symbol id="icon-id" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5 17c0-1.5 1.5-2.5 3-2.5s3 1 3 2.5"/><line x1="14" y1="9" x2="20" y2="9"/><line x1="14" y1="13" x2="18" y2="13"/></symbol>
+            <symbol id="icon-link" viewBox="0 0 24 24"><path d="M9 17H7a5 5 0 0 1 0-10h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/></symbol>
+            <symbol id="icon-scan" viewBox="0 0 24 24"><path d="M4 7V5a2 2 0 0 1 2-2h2"/><path d="M4 17v2a2 2 0 0 0 2 2h2"/><path d="M20 7V5a2 2 0 0 0-2-2h-2"/><path d="M20 17v2a2 2 0 0 1-2 2h-2"/><line x1="4" y1="12" x2="20" y2="12"/></symbol>
+            <symbol id="icon-activity" viewBox="0 0 24 24"><polyline points="3 12 8 12 11 19 14 5 17 12 21 12"/></symbol>
+            <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></symbol>
+            <symbol id="icon-wifi" viewBox="0 0 24 24"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></symbol>
+        </defs>
+    </svg>
+
     <canvas id="particles"></canvas>
 
     <!-- Header Navigation -->
@@ -882,6 +1036,14 @@
                         <a href="#experience" class="btn btn-secondary">View Experience</a>
                         <a href="cv/CV_ISARES_S.pdf" class="btn btn-secondary" download>Download CV</a>
                     </div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/in/isares-s" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn profile">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+                            </svg>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="hero-avatar-container">
                     <div class="avatar-frame">
@@ -909,8 +1071,8 @@
                     <p>Production Delivery</p>
                 </div>
                 <div class="stat-item">
-                    <h3>Agile</h3>
-                    <p>Framework Driven</p>
+                    <h3>50+</h3>
+                    <p>Technologies</p>
                 </div>
             </div>
         </div>
@@ -922,12 +1084,16 @@
             <h2 class="section-title reveal">Education</h2>
             <div class="edu-grid">
                 <div class="edu-card reveal">
+                    <div class="edu-icon"><svg class="icon-svg"><use href="#icon-cap"/></svg></div>
                     <div class="edu-degree">Master of Science in Information Technology</div>
                     <div class="edu-school">Sripatum University</div>
+                    <div class="edu-meta">Graduated 2016 &middot; GPA 3.95</div>
                 </div>
                 <div class="edu-card reveal">
+                    <div class="edu-icon"><svg class="icon-svg"><use href="#icon-cap"/></svg></div>
                     <div class="edu-degree">Bachelor of Science in Computer Science</div>
                     <div class="edu-school">Sripatum University</div>
+                    <div class="edu-meta">Graduated 2012 &middot; GPA 2.57</div>
                 </div>
             </div>
         </div>
@@ -1056,7 +1222,8 @@
                 <!-- Category 1 -->
                 <div class="skills-category reveal">
                     <div class="category-title">
-                        <span>Leadership & Architecture</span>
+                        <span class="category-icon"><svg class="icon-svg"><use href="#icon-flag"/></svg></span>
+                        <span>Leadership &amp; Architecture</span>
                     </div>
                     <div class="skills-list">
                         <span class="skill-badge">Technical Leadership</span>
@@ -1073,6 +1240,7 @@
                 <!-- Category 2 -->
                 <div class="skills-category reveal">
                     <div class="category-title">
+                        <span class="category-icon"><svg class="icon-svg"><use href="#icon-server"/></svg></span>
                         <span>Backend Engineering</span>
                     </div>
                     <div class="skills-list">
@@ -1083,7 +1251,6 @@
                         <span class="skill-badge">TIBCO Framework</span>
                         <span class="skill-badge">Grails</span>
                         <span class="skill-badge">JSP</span>
-                        <span class="skill-badge">AES/GCM Encryption</span>
                         <span class="skill-badge">RabbitMQ</span>
                         <span class="skill-badge">ActiveMQ</span>
                         <span class="skill-badge">Kafka</span>
@@ -1098,6 +1265,7 @@
                 <!-- Category 3 -->
                 <div class="skills-category reveal">
                     <div class="category-title">
+                        <span class="category-icon"><svg class="icon-svg"><use href="#icon-code"/></svg></span>
                         <span>Frontend & Integration</span>
                     </div>
                     <div class="skills-list">
@@ -1112,7 +1280,28 @@
                 <!-- Category 4 -->
                 <div class="skills-category reveal">
                     <div class="category-title">
-                        <span>Cloud, DevOps & Databases</span>
+                        <span class="category-icon"><svg class="icon-svg"><use href="#icon-database"/></svg></span>
+                        <span>DevOps & Databases</span>
+                    </div>
+                    <div class="skills-list">
+                        <span class="skill-badge">Docker Containerization</span>
+                        <span class="skill-badge">Kubernetes</span>
+                        <span class="skill-badge">MSSQL</span>
+                        <span class="skill-badge">Oracle</span>
+                        <span class="skill-badge">Oracle WebLogic</span>
+                        <span class="skill-badge">PostgreSQL</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">DynamoDB</span>
+                        <span class="skill-badge">Redis</span>
+                        <span class="skill-badge">Database Design</span>
+                    </div>
+                </div>
+
+                <!-- Category 5 -->
+                <div class="skills-category reveal skills-category--wide">
+                    <div class="category-title">
+                        <span class="category-icon"><svg class="icon-svg"><use href="#icon-cloud"/></svg></span>
+                        <span>Cloud Services</span>
                     </div>
                     <div class="skills-list">
                         <span class="skill-badge">AWS CodeCommit</span>
@@ -1128,16 +1317,6 @@
                         <span class="skill-badge">AWS CloudWatch</span>
                         <span class="skill-badge">AWS SQS</span>
                         <span class="skill-badge">AWS SNS</span>
-                        <span class="skill-badge">Docker Containerization</span>
-                        <span class="skill-badge">Kubernetes</span>
-                        <span class="skill-badge">MSSQL</span>
-                        <span class="skill-badge">Oracle</span>
-                        <span class="skill-badge">Oracle WebLogic</span>
-                        <span class="skill-badge">PostgreSQL</span>
-                        <span class="skill-badge">MySQL</span>
-                        <span class="skill-badge">DynamoDB</span>
-                        <span class="skill-badge">Redis</span>
-                        <span class="skill-badge">Database Design</span>
                     </div>
                 </div>
 
@@ -1152,7 +1331,7 @@
             <div class="projects-grid">
                 
                 <div class="project-card reveal">
-                    <div class="project-icon">🏦</div>
+                    <div class="project-icon"><svg class="icon-svg"><use href="#icon-id"/></svg></div>
                     <h3 class="project-name">eKYC Platform</h3>
                     <p class="project-desc">Designed Thai Credit Bank's eKYC platform from the ground up, covering customer data and IAL qualification, face liveness/recognition authentication, and multi-channel enrollment via branch tablets and Counter Service.</p>
                     <div class="project-tags">
@@ -1163,7 +1342,7 @@
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon">🔗</div>
+                    <div class="project-icon"><svg class="icon-svg"><use href="#icon-link"/></svg></div>
                     <h3 class="project-name">NDID Platform</h3>
                     <p class="project-desc">Architected a standalone NDID platform for Thai Credit Bank — designing the blockchain node (Tendermint/API/MQ), an abstraction layer over the NDID API, and the RP/IdP/AS services for reporting and fee calculation.</p>
                     <div class="project-tags">
@@ -1174,7 +1353,7 @@
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon">🪪</div>
+                    <div class="project-icon"><svg class="icon-svg"><use href="#icon-scan"/></svg></div>
                     <h3 class="project-name">OCR Service</h3>
                     <p class="project-desc">Built an in-house OCR service to replace a vendor solution at Thai Credit Bank, delivering Thai national ID card recognition with an architecture extensible to other document types.</p>
                     <div class="project-tags">
@@ -1185,7 +1364,7 @@
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon">📡</div>
+                    <div class="project-icon"><svg class="icon-svg"><use href="#icon-activity"/></svg></div>
                     <h3 class="project-name">OMX Mobile Backend & Webtool</h3>
                     <p class="project-desc">Engineered the OMX Mobile Backend for high-volume mobile transactions on TRUE Corp.'s infrastructure, plus a Webtool Application for transaction tracking and JMS message routing.</p>
                     <div class="project-tags">
@@ -1196,7 +1375,7 @@
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon">🛡️</div>
+                    <div class="project-icon"><svg class="icon-svg"><use href="#icon-shield"/></svg></div>
                     <h3 class="project-name">DMS — Data Correction Platform</h3>
                     <p class="project-desc">Developed a secure and auditable Data Correction platform for Bank of Ayudhya (BAY), with File Management and Dataset Dashboard modules, complying with Bank of Thailand regulatory codes.</p>
                     <div class="project-tags">
@@ -1207,7 +1386,7 @@
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon">🌐</div>
+                    <div class="project-icon"><svg class="icon-svg"><use href="#icon-wifi"/></svg></div>
                     <h3 class="project-name">TOT Wi-Fi Provisioning & NACC KM</h3>
                     <p class="project-desc">Implemented Inventory, Helpdesk, and Knowledge Management modules for TOT's Wi-Fi Provisioning system, and Report/Data Dictionary modules for the NACC Knowledge Management system.</p>
                     <div class="project-tags">
@@ -1230,14 +1409,22 @@
 
                 <div class="contact-cards">
                     <a href="mailto:isarez.sum@gmail.com" class="contact-card reveal">
+                        <div class="contact-icon"><svg class="icon-svg"><use href="#icon-mail"/></svg></div>
                         <div class="contact-label">Email</div>
                         <div class="contact-value">isarez.sum@gmail.com</div>
                     </a>
                     <a href="tel:+66877695009" class="contact-card reveal">
+                        <div class="contact-icon"><svg class="icon-svg"><use href="#icon-phone"/></svg></div>
                         <div class="contact-label">Phone</div>
                         <div class="contact-value">+6687 769 5009</div>
                     </a>
                     <div class="contact-card reveal">
+                        <div class="contact-icon"><svg class="icon-svg"><use href="#icon-chat"/></svg></div>
+                        <div class="contact-label">LINE ID</div>
+                        <div class="contact-value">noom.isarez</div>
+                    </div>
+                    <div class="contact-card reveal">
+                        <div class="contact-icon"><svg class="icon-svg"><use href="#icon-pin"/></svg></div>
                         <div class="contact-label">Location</div>
                         <div class="contact-value">Nonthaburi, Thailand</div>
                     </div>
@@ -1249,7 +1436,28 @@
     <!-- Footer -->
     <footer>
         <div class="container">
+            <svg class="footer-bot" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                    <linearGradient id="footerBotGrad" x1="0" y1="0" x2="24" y2="24">
+                        <stop offset="0" stop-color="#38bdf8"/>
+                        <stop offset="1" stop-color="#6366f1"/>
+                    </linearGradient>
+                </defs>
+                <rect x="4" y="8" width="16" height="12" rx="4" stroke="url(#footerBotGrad)" stroke-width="1.6"/>
+                <line x1="12" y1="8" x2="12" y2="4" stroke="url(#footerBotGrad)" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="12" cy="3" r="1.4" fill="url(#footerBotGrad)"/>
+                <circle cx="9" cy="14" r="1.4" fill="url(#footerBotGrad)"/>
+                <circle cx="15" cy="14" r="1.4" fill="url(#footerBotGrad)"/>
+                <line x1="1.6" y1="13" x2="4" y2="13" stroke="url(#footerBotGrad)" stroke-width="1.6" stroke-linecap="round"/>
+                <line x1="20" y1="13" x2="22.4" y2="13" stroke="url(#footerBotGrad)" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
             <p>&copy; 2026 Isares Samruayruen. All rights reserved.</p>
+            <p class="footer-credit">
+                <svg class="claude-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M12 1.5 L14.4 9.6 L22.5 12 L14.4 14.4 L12 22.5 L9.6 14.4 L1.5 12 L9.6 9.6 Z" fill="url(#footerBotGrad)"/>
+                </svg>
+                Powered by Claude
+            </p>
         </div>
     </footer>
 
