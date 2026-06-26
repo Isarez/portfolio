@@ -59,6 +59,14 @@ index/
 - สไตล์ icon: line-icon สีเดียว (`var(--color-primary)`) ใส่ในกล่องพื้นหลังวงกลม/สี่เหลี่ยมมุมโค้งจาง (`rgba(56,189,248,0.12)`) ตอน hover การ์ดจะเปลี่ยนพื้น icon เป็น gradient เต็ม + ตัว icon เป็นสีขาว
 - ห้ามใช้ emoji อีก — ผู้ใช้สั่งให้เอา emoji ออกให้หมดและทำเป็น SVG ธีมเดียวกันแทน
 
+## Experience Timeline (สำคัญ — เคยปรับหลายรอบ)
+- เส้นซ้ายของ `.timeline` ไม่ใช้ bullet/circle marker ธรรมดาแล้ว — แต่ละ `.timeline-item` มี `data-year` attribute (เช่น `data-year="2020-Present"`, `"2018"`, `"2016"`, `"2012"`) แสดงผลผ่าน CSS `content: attr(data-year)` บน `::before`
+- ป้ายปีเป็น **auto-width pill** (ไม่ fix width) ใช้ `left: 43px; transform: translateX(-50%)` (เลขต้องตรงกับ `left` ของเส้น `.timeline::before`/`::after`) ให้อยู่กึ่งกลางเส้นเสมอไม่ว่าข้อความจะยาวแค่ไหน — ตอน hover ต้องคง `translateX(-50%)` ไว้คู่กับ `scale()` ไม่งั้นป้ายจะเด้งหลุดจากกึ่งกลาง
+- สีป้าย: gradient เข้ม `linear-gradient(135deg, var(--bg-card) 0%, #1e2942 45%, #2d2470 100%)` (จับคู่จากพื้นหลังกล่อง experience ไม่ใช่ accent สีสว่าง) + ขอบฟ้าจาง `rgba(56,189,248,0.4)` กัน sink หายไปกับพื้นหลังหน้าเว็บที่เข้มใกล้เคียงกัน
+- **ไม่มี** pulsing glow ring ที่ป้ายแล้ว (ผู้ใช้สั่งเอาออก) — มีแค่ hover scale + shadow เข้มขึ้น
+- เส้น timeline มี 2 ชั้น: เส้น track จางไล่หายปลายเส้น (`::before`) + เส้นแสงไหลลงเรื่อยๆ (`::after`, `timelineFlow` animation) ที่ตอนนี้ทำให้จางลงแล้ว (`opacity: 0.35`)
+- **บั๊กที่เคยเจอ:** `::after` ของ parent element ถูก paint เป็นลูกตัวสุดท้ายตามสเปก CSS เลยทับอยู่หน้า `.timeline-item` (ลูกจริง) ที่มาก่อนหน้ามันใน DOM — แก้ด้วยการเพิ่ม `z-index: 1` ให้ `.timeline-item` (ต้องมี `position: relative` ด้วย) จะจำสิ่งนี้ไว้เผื่อเจอปัญหา stacking ลักษณะนี้อีกที่อื่นในเว็บ
+
 ## Animations / effects ที่ทำไว้ (อยู่ใน `<style>` และ `<script>` ท้ายไฟล์)
 - **Particle background** — `<canvas id="particles">` วาด particle ลอย + เส้นเชื่อม (constellation), ปรับจำนวนตามขนาดจอ (แทนที่ bgSheen เดิมที่เคยลองแล้วเปลี่ยนมาเป็น particle ตามที่ผู้ใช้ขอ)
 - **Avatar glow** — conic-gradient ring หมุน (`avatarSpin` 9s) + pulsing halo (`avatarPulse`) + glow pulse หลังรูป (ปรับให้เข้มขึ้นรอบล่าสุดตามที่ผู้ใช้ขอ "ทำให้เด่นขึ้น")
