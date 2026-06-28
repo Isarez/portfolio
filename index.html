@@ -8,15 +8,15 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Isares Samruayruen | Technical Lead Software Developer">
     <meta property="og:description" content="Technical Lead Software Developer with 13+ years of experience in enterprise software, banking systems, eKYC/NDID platforms, and cloud architecture.">
-    <meta property="og:image" content="https://isarez.github.io/portfolio/images/img.jpg">
+    <meta property="og:image" content="https://isarez.github.io/portfolio/assets/images/img.jpg">
     <meta property="og:url" content="https://isarez.github.io/portfolio/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Isares Samruayruen | Technical Lead Software Developer">
     <meta name="twitter:description" content="Technical Lead Software Developer with 13+ years of experience in enterprise software, banking systems, eKYC/NDID platforms, and cloud architecture.">
-    <meta name="twitter:image" content="https://isarez.github.io/portfolio/images/img.jpg">
-    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <meta name="twitter:image" content="https://isarez.github.io/portfolio/assets/images/img.jpg">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -87,6 +87,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            width: 100%;
         }
 
         .gradient-text {
@@ -213,6 +214,42 @@
         .nav-links a:hover::after,
         .nav-links a.active::after {
             transform: scaleX(1);
+        }
+
+        /* Hamburger toggle (mobile only) */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--color-text-main);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-toggle.is-open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-toggle.is-open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.is-open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
         }
 
         /* Hero Section */
@@ -968,6 +1005,9 @@
             .cta-group {
                 justify-content: center;
             }
+            .social-row {
+                justify-content: center;
+            }
             .stats-bar {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
@@ -985,22 +1025,91 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+            .nav-toggle {
+                display: flex;
+            }
             .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                background-color: var(--bg-main);
+                border-bottom: 1px solid var(--color-border);
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height 0.35s ease, opacity 0.3s ease;
+                pointer-events: none;
+            }
+            .nav-links.is-open {
+                max-height: calc(100vh - 70px);
+                opacity: 1;
+                pointer-events: auto;
+                overflow-y: auto;
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a {
+                display: block;
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .nav-links a::after {
                 display: none;
+            }
+            .avatar-frame {
+                width: 240px;
+                height: 240px;
+            }
+            .hero {
+                padding: 140px 0 70px;
+            }
+            .hero-text h1 {
+                font-size: 2.25rem;
+            }
+            .hero-text h2 {
+                font-size: 1.4rem;
+            }
+            .cta-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .cta-group .btn {
+                text-align: center;
+            }
+            .stats-bar {
+                padding: 1.5rem 1rem;
             }
             .timeline::before,
             .timeline::after {
                 left: 24px;
             }
             .timeline-item {
-                padding-left: 96px;
+                padding-left: 112px;
             }
             .timeline-item::before {
-                left: 25px;
-                min-width: 50px;
-                height: 21px;
-                font-size: 0.6rem;
-                border-radius: 11px;
+                left: 24px;
+                transform: none;
+                min-width: 0;
+                max-width: 76px;
+                height: auto;
+                min-height: 21px;
+                padding: 3px 6px;
+                font-size: 0.58rem;
+                border-radius: 10px;
+                white-space: normal;
+                line-height: 1.15;
+                text-align: center;
+            }
+            .timeline-item:hover::before {
+                transform: scale(1.08);
             }
             .timeline-header {
                 flex-direction: column;
@@ -1012,6 +1121,58 @@
             .contact-cards {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+            }
+            .contact-value {
+                white-space: normal;
+                word-break: break-word;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .hero-text h1 {
+                font-size: 1.85rem;
+            }
+            .hero-text h2 {
+                font-size: 1.2rem;
+            }
+            .hero-desc {
+                font-size: 1rem;
+            }
+            .avatar-frame {
+                width: 180px;
+                height: 180px;
+                padding: 4px;
+            }
+            .avatar-frame::before {
+                inset: -18px;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1.25rem 0.75rem;
+            }
+            .stat-item h3 {
+                font-size: 1.6rem;
+            }
+            .stat-item p {
+                font-size: 0.75rem;
+            }
+            .section-title {
+                font-size: 1.65rem;
+            }
+            .timeline-content {
+                padding: 1.25rem;
+            }
+            .role-title {
+                font-size: 1.15rem;
+            }
+            .skills-category,
+            .project-card,
+            .edu-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -1046,7 +1207,7 @@
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">ISAREZ<span style="color: var(--color-primary);">.S</span></a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -1054,6 +1215,9 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -1070,7 +1234,7 @@
                     <div class="cta-group">
                         <a href="#contact" class="btn btn-primary">Get In Touch</a>
                         <a href="#experience" class="btn btn-secondary">View Experience</a>
-                        <a href="cv/CV_ISARES_S.pdf" class="btn btn-secondary" download>Download CV</a>
+                        <a href="assets/cv/CV_ISARES_S.pdf" class="btn btn-secondary" download>Download CV</a>
                     </div>
                     <div class="social-row">
                         <a href="https://www.linkedin.com/in/isares-s" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn profile">
@@ -1083,7 +1247,7 @@
                 </div>
                 <div class="hero-avatar-container">
                     <div class="avatar-frame">
-                        <img src="images/img.jpg" alt="Isares Samruayruen" class="avatar-img" onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-accent)';">
+                        <img src="assets/images/img.jpg" alt="Isares Samruayruen" class="avatar-img" onerror="this.style.display='none'; this.parentElement.style.background='var(--gradient-accent)';">
                     </div>
                 </div>
             </div>
@@ -1498,6 +1662,33 @@
     </footer>
 
     <script>
+        // Hamburger menu toggle (mobile)
+        const navToggle = document.getElementById('navToggle');
+        const navLinksList = document.getElementById('navLinks');
+
+        function closeMenu() {
+            navToggle.classList.remove('is-open');
+            navLinksList.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = navLinksList.classList.toggle('is-open');
+            navToggle.classList.toggle('is-open', isOpen);
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navLinksList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinksList.classList.contains('is-open')) return;
+            if (!navLinksList.contains(e.target) && !navToggle.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
         const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
         const sections = Array.from(navLinks)
             .map(link => document.querySelector(link.getAttribute('href')))
