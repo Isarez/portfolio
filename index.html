@@ -885,6 +885,219 @@
             font-size: 0.9rem;
         }
 
+        /* Certifications Section */
+        .certifications {
+            padding: 100px 0;
+            background-color: rgba(19, 28, 48, 0.2);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .cert-card {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .cert-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(56, 189, 248, 0) 35%,
+                rgba(56, 189, 248, 0.18) 50%,
+                rgba(99, 102, 241, 0.22) 58%,
+                rgba(99, 102, 241, 0) 75%,
+                transparent 100%
+            );
+            transform: skewX(-20deg);
+            pointer-events: none;
+            transition: left 0.85s ease;
+        }
+
+        .cert-card:hover::after {
+            left: 125%;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cert-card::after { transition: none; }
+        }
+
+        .cert-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 0.75rem;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .cert-name {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            margin-top: 1rem;
+            margin-bottom: 1.35rem;
+            color: var(--color-text-main);
+            cursor: default;
+        }
+
+        .cert-issuer {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: default;
+        }
+
+        .cert-links {
+            position: relative;
+            z-index: 1;
+            margin-top: 0.85rem;
+            font-size: 0.72rem;
+        }
+
+        .cert-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .cert-links a:hover {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        .cert-links-sep {
+            color: var(--color-text-muted);
+            margin: 0 0.5rem;
+        }
+
+        /* Certificate image modal */
+        .cert-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            visibility: hidden;
+            transition: visibility 0s linear 0.45s;
+        }
+
+        .cert-modal.is-open {
+            visibility: visible;
+            transition: visibility 0s linear 0s;
+        }
+
+        .cert-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 9, 17, 0.3);
+            backdrop-filter: blur(0px);
+            opacity: 0;
+            transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), backdrop-filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .cert-modal.is-open .cert-modal-backdrop {
+            backdrop-filter: blur(2px);
+            opacity: 1;
+        }
+
+        .cert-modal-content {
+            position: relative;
+            max-width: min(980px, 94vw);
+            max-height: 92vh;
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.9) translateY(18px);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+            text-align: center;
+        }
+
+        .cert-modal.is-open .cert-modal-content {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .cert-modal-content img {
+            display: block;
+            max-width: 100%;
+            max-height: 80vh;
+            margin: 0 auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .cert-modal-title {
+            margin-top: 1rem;
+            color: var(--color-text-main);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .cert-modal-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--gradient-accent);
+            color: #fff;
+            font-size: 1.4rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+            transition: transform 0.2s;
+        }
+
+        .cert-modal-close:hover {
+            transform: scale(1.08);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cert-modal, .cert-modal-backdrop, .cert-modal-content, .cert-modal-close { transition: none; }
+        }
+
+        @media (max-width: 768px) {
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Contact Section */
         .contact {
             padding: 100px 0 140px;
@@ -1191,6 +1404,7 @@
             <symbol id="icon-activity" viewBox="0 0 24 24"><polyline points="3 12 8 12 11 19 14 5 17 12 21 12"/></symbol>
             <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></symbol>
             <symbol id="icon-wifi" viewBox="0 0 24 24"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></symbol>
+            <symbol id="icon-ai-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><circle cx="12" cy="12" r="2"/><line x1="9" y1="3" x2="9" y2="7"/><line x1="15" y1="3" x2="15" y2="7"/><line x1="9" y1="17" x2="9" y2="21"/><line x1="15" y1="17" x2="15" y2="21"/><line x1="3" y1="9" x2="7" y2="9"/><line x1="3" y1="15" x2="7" y2="15"/><line x1="17" y1="9" x2="21" y2="9"/><line x1="17" y1="15" x2="21" y2="15"/></symbol>
         </defs>
     </svg>
 
@@ -1205,6 +1419,7 @@
                 <li><a href="#education">Education</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -1517,6 +1732,45 @@
         </div>
     </section>
 
+    <!-- Certifications Section -->
+    <section class="certifications" id="certifications">
+        <div class="container">
+            <h2 class="section-title reveal">Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-card reveal">
+                    <div class="cert-icon"><svg class="icon-svg"><use href="#icon-ai-chip"/></svg></div>
+                    <div class="cert-name">Claude 101</div>
+                    <div class="cert-issuer">Anthropic</div>
+                    <div class="cert-links">
+                        <a href="assets/certs/1_claude_101/claude_101.jpg" class="cert-view-link" data-cert-img="assets/certs/1_claude_101/claude_101.jpg" data-cert-title="Claude 101">View Cert</a>
+                        <span class="cert-links-sep">&middot;</span>
+                        <a href="https://verify.skilljar.com/c/e7q7xqbrzsap" target="_blank" rel="noopener">Official Cert</a>
+                    </div>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-icon"><svg class="icon-svg"><use href="#icon-ai-chip"/></svg></div>
+                    <div class="cert-name">Claude Code 101</div>
+                    <div class="cert-issuer">Anthropic</div>
+                    <div class="cert-links">
+                        <a href="assets/certs/2_claude_code_101/claude_code_101.jpg" class="cert-view-link" data-cert-img="assets/certs/2_claude_code_101/claude_code_101.jpg" data-cert-title="Claude Code 101">View Cert</a>
+                        <span class="cert-links-sep">&middot;</span>
+                        <a href="https://verify.skilljar.com/c/m9g9iekn6df9" target="_blank" rel="noopener">Official Cert</a>
+                    </div>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-icon"><svg class="icon-svg"><use href="#icon-ai-chip"/></svg></div>
+                    <div class="cert-name">Claude Platform 101</div>
+                    <div class="cert-issuer">Anthropic</div>
+                    <div class="cert-links">
+                        <a href="assets/certs/3_claude_platform_101/claude_platform_101.jpg" class="cert-view-link" data-cert-img="assets/certs/3_claude_platform_101/claude_platform_101.jpg" data-cert-title="Claude Platform 101">View Cert</a>
+                        <span class="cert-links-sep">&middot;</span>
+                        <a href="https://verify.skilljar.com/c/i72h3oxyrteh" target="_blank" rel="noopener">Official Cert</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
@@ -1653,6 +1907,16 @@
             </p>
         </div>
     </footer>
+
+    <!-- Certificate Image Modal -->
+    <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="cert-modal-backdrop" data-cert-close></div>
+        <div class="cert-modal-content">
+            <button type="button" class="cert-modal-close" data-cert-close aria-label="Close">&times;</button>
+            <img src="" alt="" id="certModalImg">
+            <p class="cert-modal-title" id="certModalTitle"></p>
+        </div>
+    </div>
 
     <script>
         // Hamburger menu toggle (mobile)
@@ -1811,6 +2075,47 @@
             resize();
             window.addEventListener('resize', resize);
             draw();
+        })();
+
+        // Certificate image modal
+        (function () {
+            const modal = document.getElementById('certModal');
+            const modalImg = document.getElementById('certModalImg');
+            const modalTitle = document.getElementById('certModalTitle');
+            let lastFocused = null;
+
+            function openModal(src, title) {
+                lastFocused = document.activeElement;
+                modalImg.src = src;
+                modalImg.alt = title;
+                modalTitle.textContent = title;
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                modalImg.src = '';
+                if (lastFocused) lastFocused.focus();
+            }
+
+            document.querySelectorAll('.cert-view-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(link.dataset.certImg, link.dataset.certTitle);
+                });
+            });
+
+            modal.querySelectorAll('[data-cert-close]').forEach(el => {
+                el.addEventListener('click', closeModal);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+            });
         })();
     </script>
 
