@@ -1048,6 +1048,11 @@
             transform: scale(1) translateY(0);
         }
 
+        .cert-modal-img-wrap {
+            position: relative;
+            min-height: 220px;
+        }
+
         .cert-modal-content img {
             display: block;
             max-width: 100%;
@@ -1055,6 +1060,41 @@
             margin: 0 auto;
             border-radius: 8px;
             object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .cert-modal-content img.is-loaded {
+            opacity: 1;
+        }
+
+        .cert-modal-spinner {
+            display: none;
+            position: absolute;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-modal-spinner.is-active {
+            display: flex;
+        }
+
+        .cert-modal-spinner span {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 3px solid rgba(56, 189, 248, 0.2);
+            border-top-color: var(--color-primary);
+            animation: certSpin 0.8s linear infinite;
+        }
+
+        @keyframes certSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cert-modal-spinner span { animation: none; }
         }
 
         .cert-modal-title {
@@ -1913,7 +1953,10 @@
         <div class="cert-modal-backdrop" data-cert-close></div>
         <div class="cert-modal-content">
             <button type="button" class="cert-modal-close" data-cert-close aria-label="Close">&times;</button>
-            <img src="" alt="" id="certModalImg">
+            <div class="cert-modal-img-wrap">
+                <div class="cert-modal-spinner" id="certModalSpinner"><span></span></div>
+                <img src="" alt="" id="certModalImg">
+            </div>
             <p class="cert-modal-title" id="certModalTitle"></p>
         </div>
     </div>
@@ -2082,10 +2125,18 @@
             const modal = document.getElementById('certModal');
             const modalImg = document.getElementById('certModalImg');
             const modalTitle = document.getElementById('certModalTitle');
+            const modalSpinner = document.getElementById('certModalSpinner');
             let lastFocused = null;
+
+            modalImg.addEventListener('load', () => {
+                modalSpinner.classList.remove('is-active');
+                modalImg.classList.add('is-loaded');
+            });
 
             function openModal(src, title) {
                 lastFocused = document.activeElement;
+                modalImg.classList.remove('is-loaded');
+                modalSpinner.classList.add('is-active');
                 modalImg.src = src;
                 modalImg.alt = title;
                 modalTitle.textContent = title;
@@ -2099,6 +2150,8 @@
                 modal.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
                 modalImg.src = '';
+                modalImg.classList.remove('is-loaded');
+                modalSpinner.classList.remove('is-active');
                 if (lastFocused) lastFocused.focus();
             }
 
